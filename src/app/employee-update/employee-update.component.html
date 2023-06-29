@@ -1,55 +1,60 @@
 <div class="row justify-content-center mt-4">
-    <div class="col-md-4 register-employee">
-      <!-- form card register -->
-      <div class="card-body">
-        <form style="border:thin rgb(194, 190, 190) solid; margin:20px; padding:20px;">
-          <div class="form-group">
-            <label for="inputName">Name</label>
-            <input class="form-control" type="text" formControlName="name" />
-          </div>
-          <div class="form-group">
-            <label for="inputEmail3">Email</label>
-            <input class="form-control" type="text" formControlName="email" />
-          </div>
-          <div class="form-group">
-            <label for="inputPassword3">Designation</label>
-            <select
-              class="custom-select form-control"
-              formControlName="designation"
-            >
+  <div class="col-md-4 register-employee">
+    <!-- form card register -->
+    <div class="card-body">
+      <form [formGroup]="updateEmployeeForm" (ngSubmit)="onSubmit()" style="border:thin rgb(194, 190, 190) solid; margin:20px; padding:20px;">
+        <div class="form-group">
+          <label for="inputName">Name</label>
+          <input class="form-control" type="text" formControlName="Name" [class.is-invalid] = "updateEmployeeForm.get('Name')?.invalid && updateEmployeeForm.get('Name')?.touched"/>
+          <small *ngIf="updateEmployeeForm.get('Name')?.errors?.['required'] && updateEmployeeForm.get('Name')?.touched" [class.d-none]="updateEmployeeForm.get('Name')?.valid" class="text-danger"> Name is required</small>
+          <small *ngIf="updateEmployeeForm.get('Name')?.errors?.['pattern'] && updateEmployeeForm.get('Name')?.touched" [class.d-none]="updateEmployeeForm.get('Name')?.valid" class="text-danger"> Name should contain alphabets only</small>
+        </div>
+        <div class="form-group">
+          <label for="inputEmail3">Email</label>
+          <input class="form-control" type="text" formControlName="Email" [class.is-invalid] = "updateEmployeeForm.get('Email')?.invalid && updateEmployeeForm.get('Email')?.touched" />
+          <small *ngIf="updateEmployeeForm.get('Email')?.errors?.['required'] && updateEmployeeForm.get('Email')?.touched" [class.d-none]="updateEmployeeForm.get('Email')?.valid" class="text-danger"> Email is required</small>
+          <small *ngIf="updateEmployeeForm.get('Email')?.errors?.['email'] && updateEmployeeForm.get('Email')?.touched" [class.d-none]="updateEmployeeForm.get('Email')?.valid" class="text-danger"> Invalid Email Id</small>
+        </div>
+        <div class="form-group">
+          <label for="inputPassword3">Designation</label>
+          <select
+            class="custom-select form-control"
+            formControlName="Designation" [class.is-invalid] = "updateEmployeeForm.get('Designation')?.invalid && updateEmployeeForm.get('Designation')?.touched"
+          >
             <option value="">Choose...</option>
             <option *ngFor="let item of desginationList" value="{{ item }}">
               {{ item }}
             </option>
-             
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="inputVerify3">Phone No</label>
-            <input
-              class="form-control"
-              type="text"
-              formControlName="phoneNumber"
-            />
-          </div>
-          <div class="form-group">
-            <label for="inputVerify4">Location</label>
-            <input
-              class="form-control"
-              type="text"
-              formControlName="location"
-            />
-          </div>
-         <br/>
-          <div class="form-group">
-            <button class="btn btn-success btn-lg btn-block" type="submit" style="margin-right: 10px;">
-              Create
-            </button> 
-            <button class="btn btn-default btn-lg btn-block" routerLink="/">
-                Back
-              </button>
-          </div>
-        </form>
-      </div>
+          </select>
+          <small *ngIf="updateEmployeeForm.get('Designation')?.errors?.['required'] && updateEmployeeForm.get('Designation')?.touched" [class.d-none]="updateEmployeeForm.get('Designation')?.valid" class="text-danger">Designation is required</small>
+        </div>
+        <div class="form-group">
+          <label for="inputVerify3">Phone No</label>
+          <input
+            class="form-control"
+            type="text" maxlength="10"
+            formControlName="Phone" [class.is-invalid] = "updateEmployeeForm.get('Phone')?.invalid && updateEmployeeForm.get('Phone')?.touched" />
+            <small *ngIf="updateEmployeeForm.get('Phone')?.errors?.['required'] && updateEmployeeForm.get('Phone')?.touched" [class.d-none]="updateEmployeeForm.get('Phone')?.valid" class="text-danger">Phone number is required</small>
+            <small *ngIf="updateEmployeeForm.get('Phone')?.errors?.['minlength'] && updateEmployeeForm.get('Phone')?.touched" [class.d-none]="updateEmployeeForm.get('Phone')?.valid" class="text-danger">Please enter 10 digit phone number </small>
+        </div>
+        <div class="form-group">
+          <label for="inputVerify4">Location</label>
+          <input
+            class="form-control"
+            type="text"
+            formControlName="Location" [class.is-invalid] = "updateEmployeeForm.get('Location')?.invalid && updateEmployeeForm.get('Location')?.touched" />
+            <small *ngIf="updateEmployeeForm.get('Location')?.errors?.['required'] && updateEmployeeForm.get('Location')?.touched" [class.d-none]="updateEmployeeForm.get('Location')?.valid" class="text-danger">Location is required</small>
+        </div>
+       <br/>
+        <div class="form-group">
+          <button class="btn btn-success btn-lg btn-block" type="submit" style="margin-right: 10px;">
+            Update
+          </button> 
+          <button class="btn btn-default btn-lg btn-block" routerLink="/">
+              Back
+            </button>
+        </div>
+      </form>
     </div>
   </div>
+</div>

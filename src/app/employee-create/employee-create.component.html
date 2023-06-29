@@ -5,42 +5,45 @@
         <form [formGroup]="createEmployeeForm" (ngSubmit)="onSubmit()" style="border:thin rgb(194, 190, 190) solid; margin:20px; padding:20px;">
           <div class="form-group">
             <label for="inputName">Name</label>
-            <input class="form-control" type="text" formControlName="name" [class.is-invalid] = "createEmployeeForm.get('name')?.invalid && createEmployeeForm.get('name')?.touched"/>
-              <small *ngIf="myForm.name.errors?.['required'] && myForm.name.touched" [class.d-none]="createEmployeeForm.get('name')?.valid" class="text-danger">Name is required</small>
-              <small *ngIf="myForm.name.errors?.['pattern'] && myForm.name.touched" [class.d-none]="createEmployeeForm.get('name')?.valid" class="text-danger"> Name should contain only alphabets.</small>
-          
+            <input class="form-control" type="text" formControlName="Name" [class.is-invalid] = "createEmployeeForm.get('Name')?.invalid && createEmployeeForm.get('Name')?.touched"/>
+            <small *ngIf="createEmployeeForm.get('Name')?.errors?.['required'] && createEmployeeForm.get('Name')?.touched" [class.d-none]="createEmployeeForm.get('Name')?.valid" class="text-danger"> Name is required</small>
+            <small *ngIf="createEmployeeForm.get('Name')?.errors?.['pattern'] && createEmployeeForm.get('Name')?.touched" [class.d-none]="createEmployeeForm.get('Name')?.valid" class="text-danger"> Name should contain alphabets only</small>
           </div>
           <div class="form-group">
             <label for="inputEmail3">Email</label>
-            <input class="form-control" type="text" formControlName="email" />
+            <input class="form-control" type="text" formControlName="Email" [class.is-invalid] = "createEmployeeForm.get('Email')?.invalid && createEmployeeForm.get('Email')?.touched" />
+            <small *ngIf="createEmployeeForm.get('Email')?.errors?.['required'] && createEmployeeForm.get('Email')?.touched" [class.d-none]="createEmployeeForm.get('Email')?.valid" class="text-danger"> Email is required</small>
+            <small *ngIf="createEmployeeForm.get('Email')?.errors?.['email'] && createEmployeeForm.get('Email')?.touched" [class.d-none]="createEmployeeForm.get('Email')?.valid" class="text-danger"> Invalid Email Id</small>
           </div>
           <div class="form-group">
             <label for="inputPassword3">Designation</label>
             <select
               class="custom-select form-control"
-              formControlName="designation"
+              formControlName="Designation" [class.is-invalid] = "createEmployeeForm.get('Designation')?.invalid && createEmployeeForm.get('Designation')?.touched"
             >
               <option value="">Choose...</option>
               <option *ngFor="let item of desginationList" value="{{ item }}">
                 {{ item }}
               </option>
             </select>
+            <small *ngIf="createEmployeeForm.get('Designation')?.errors?.['required'] && createEmployeeForm.get('Designation')?.touched" [class.d-none]="createEmployeeForm.get('Designation')?.valid" class="text-danger">Designation is required</small>
           </div>
           <div class="form-group">
             <label for="inputVerify3">Phone No</label>
             <input
               class="form-control"
-              type="text"
-              formControlName="phoneNumber"
-            />
+              type="text" maxlength="10"
+              formControlName="Phone" [class.is-invalid] = "createEmployeeForm.get('Phone')?.invalid && createEmployeeForm.get('Phone')?.touched" />
+              <small *ngIf="createEmployeeForm.get('Phone')?.errors?.['required'] && createEmployeeForm.get('Phone')?.touched" [class.d-none]="createEmployeeForm.get('Phone')?.valid" class="text-danger">Phone number is required</small>
+              <small *ngIf="createEmployeeForm.get('Phone')?.errors?.['minlength'] && createEmployeeForm.get('Phone')?.touched" [class.d-none]="createEmployeeForm.get('Phone')?.valid" class="text-danger">Please enter 10 digit phone number </small>
           </div>
           <div class="form-group">
             <label for="inputVerify4">Location</label>
             <input
               class="form-control"
               type="text"
-              formControlName="location"
-            />
+              formControlName="Location" [class.is-invalid] = "createEmployeeForm.get('Location')?.invalid && createEmployeeForm.get('Location')?.touched" />
+              <small *ngIf="createEmployeeForm.get('Location')?.errors?.['required'] && createEmployeeForm.get('Location')?.touched" [class.d-none]="createEmployeeForm.get('Location')?.valid" class="text-danger">Location is required</small>
           </div>
          <br/>
           <div class="form-group">

@@ -16,17 +16,14 @@ export class EmployeeCreateComponent implements OnInit {
  {
 
  }
- // Getter to access form control
- get myForm() {
-  return this.createEmployeeForm.controls;
-}
+ 
 ngOnInit(): void {
   this.createEmployeeForm=this.fb.group({
-    name:['',[Validators.required,Validators.pattern(/^[a-zA-Z]*$/)]],
-    email:['',[Validators.required,Validators.email]],
-    designation:['',Validators.required],
-    phoneNumber:['',[Validators.required,Validators.maxLength(10),Validators.minLength(10),Validators.pattern(/^[0-9]*$/)]],
-    location:['',Validators.required]
+    Name:['',[Validators.required,Validators.pattern(/^[a-zA-Z ]*$/)]],
+    Email:['',[Validators.required,Validators.email]],
+    Designation:['',Validators.required],
+    Phone:['',[Validators.required,Validators.minLength(10),Validators.pattern(/^[0-9]*$/)]],
+    Location:['',Validators.required]
   })
 }
 
@@ -34,6 +31,7 @@ ngOnInit(): void {
  {
   if(this.createEmployeeForm.valid)
   {
+    console.log(this.createEmployeeForm.value)
     this.empServiceOBj.CreateEmployee(this.createEmployeeForm.value).subscribe({
       complete:()=>{
         console.log("Employee Created successfully");

@@ -33,7 +33,7 @@ export class EmployeeService {
   }
 
   //Update employee
-  UpdateEmployee(id:number,data:any):Observable<any>
+  UpdateEmployee(id:any,data:any):Observable<any>
   {
     return this.httpClient.put(this.baseURL+'UpdateEmployee/'+id,data).pipe(
       map((res)=>{return res})

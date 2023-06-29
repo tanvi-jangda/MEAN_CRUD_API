@@ -27,7 +27,7 @@ DeleteEmployee(id:number){
     {
       complete:()=>{
       console.log("Employee deleted successfully");
-      this.router.navigateByUrl("/GetEmployees");
+      this.router.navigateByUrl("/");
       },
       error:(e)=>{
         console.log(e);
