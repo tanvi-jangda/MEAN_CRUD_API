@@ -2,7 +2,8 @@
     <div class="container-fluid">
       <h2 style="color: white;">Employee CRUD App</h2>
       <div class="d-flex">
-       <button [routerLink]="['CreateEmployee']" class="btn btn-success" type="button">Add Employee</button>
+       <button [routerLink]="['CreateEmployee']" class="btn btn-success" type="button">Add Employee</button> &nbsp;
+       <button class="btn btn-danger" style="cursor:pointer" *ngIf="_authService.loggedIn()" (click)="_authService.logoutUser()">Logout</button>       
      </div>
     </div>
  </nav>

@@ -10,13 +10,15 @@ import { EmployeeService } from './employee.service';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     EmployeeListComponent,
     EmployeeCreateComponent,
-    EmployeeUpdateComponent
+    EmployeeUpdateComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
